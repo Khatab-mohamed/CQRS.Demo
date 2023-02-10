@@ -1,3 +1,4 @@
+using CQRS.Demo.DataStore;
 using MediatR;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 //  MediatR Method
 
 builder.Services.AddMediatR(typeof(Program));
+
+builder.Services.AddSingleton<FakeDataStore>();
 
 builder.Services.AddControllers();
     
