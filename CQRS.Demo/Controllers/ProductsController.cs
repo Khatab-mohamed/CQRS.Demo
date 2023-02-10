@@ -38,5 +38,13 @@ namespace CQRS.Demo.Controllers
             return Ok(product);
 
         }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateProduct([FromBody] Product product)
+        {
+            var productToReturn = await _sender.Send(new UpdateProductCommand(product));
+            return CreatedAtRoute("GetProductById", new { Id = productToReturn.Id }, productToReturn);
+
+        }
     }
 }

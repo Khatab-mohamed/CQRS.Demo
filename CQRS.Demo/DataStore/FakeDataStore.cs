@@ -27,5 +27,13 @@ namespace CQRS.Demo.DataStore
 
         public async Task<Product> GetProductById(int id) =>  await Task.FromResult(products.Single(p => p.Id == id));
 
+        public async Task UpdateProduct(Product product)
+        {
+            var productFromDb = products.Single(p => p.Id == product.Id);
+            productFromDb.Name = product.Name;
+            await Task.CompletedTask;
+
+        }
+
     }
 }
