@@ -34,7 +34,7 @@ namespace CQRS.Demo.Controllers
         [HttpGet("{id:int}", Name ="GetProductById")]
         public async Task<IActionResult> GetProduct(int id)
         {
-            var product = await _sender.Send(new GetProductById(id));
+            var product = await _sender.Send(new GetProductByIdQuery(id));
             return Ok(product);
 
         }

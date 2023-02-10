@@ -3,5 +3,5 @@ using MediatR;
 
 namespace CQRS.Demo.Queries
 {
-    public record GetProductById(int id) :IRequest<Product>;
+    public record GetProductByIdQuery(int id) :IRequest<Product>;
 }
