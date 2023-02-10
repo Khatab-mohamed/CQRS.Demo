@@ -26,8 +26,16 @@ namespace CQRS.Demo.Controllers
         [HttpPost]
         public async Task<IActionResult> AddProduct([FromBody] Product product)
         {
-             await _sender.Send(new AddProductCommand(product));
-            return StatusCode(201);
+           var productToReturn =  await _sender.Send(new AddProductCommand(product));
+            return CreatedAtRoute("GetProductById",new {Id= productToReturn.Id },productToReturn);
+
+        }
+
+        [HttpGet("{id:int}", Name ="GetProductById")]
+        public async Task<IActionResult> GetProduct(int id)
+        {
+            var product = await _sender.Send(new GetProductById(id));
+            return Ok(product);
 
         }
     }

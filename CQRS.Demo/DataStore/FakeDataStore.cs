@@ -25,5 +25,7 @@ namespace CQRS.Demo.DataStore
 
         public async Task<IEnumerable<Product>> GetAllProducts() => await Task.FromResult(products);
 
+        public async Task<Product> GetProductById(int id) =>  await Task.FromResult(products.Single(p => p.Id == id));
+
     }
 }
