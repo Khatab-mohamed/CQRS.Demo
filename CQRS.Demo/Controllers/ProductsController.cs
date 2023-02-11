@@ -46,5 +46,12 @@ namespace CQRS.Demo.Controllers
             return CreatedAtRoute("GetProductById", new { Id = productToReturn.Id }, productToReturn);
 
         }
+        [HttpDelete("{id:int}")]
+        public async Task<IActionResult> DeleteProduct(int id)
+        {
+             await _sender.Send(new DeleteProductCommand(id));
+            return Ok();
+
+        }
     }
 }

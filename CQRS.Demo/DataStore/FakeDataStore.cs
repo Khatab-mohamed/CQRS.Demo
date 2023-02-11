@@ -34,6 +34,13 @@ namespace CQRS.Demo.DataStore
             await Task.CompletedTask;
 
         }
+        public async Task DeleteProduct(int id)
+        {
+            var productFromDb = products.Single(p => p.Id == id);
+            products.Remove(productFromDb);
+            await Task.CompletedTask;
+
+        }
 
     }
 }
